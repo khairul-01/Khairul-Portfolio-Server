@@ -33,6 +33,7 @@ async function run() {
 
         const skillsCollection = client.db('KhairulPortfolio').collection('skills');
         const projectsCollection = client.db('KhairulPortfolio').collection('projects');
+        const contactsInfoCollection = client.db('KhairulPortfolio').collection('contactsInfo');
 
         app.get('/skills', async (req, res) => {
             const result = await skillsCollection.find().toArray();
@@ -42,6 +43,12 @@ async function run() {
 
         app.get('/projects', async (req, res) => {
             const result = await projectsCollection.find().toArray();
+            res.send(result);
+        })
+
+        app.post('/contact', async (req, res) => {
+            const constactInfo = req.body;
+            const result = await contactsInfoCollection.insertOne(constactInfo);
             res.send(result);
         })
 
