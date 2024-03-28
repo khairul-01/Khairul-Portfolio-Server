@@ -42,7 +42,8 @@ async function run() {
         })
 
         app.get('/projects', async (req, res) => {
-            const result = await projectsCollection.find().toArray();
+            const projects = await projectsCollection.find().toArray();
+            const result = projects.slice(0,4);
             res.send(result);
         })
 
